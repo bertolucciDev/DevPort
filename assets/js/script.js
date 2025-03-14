@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
             descricao: "Descrição do projeto 1",
             URL: "https://loja.hostingfox.xyz",
             imagem: [
-                "assets/img/projetos/loja-login.png",
+                "assets/img/projetos/aiiii.jpg",
                 "assets/img/projetos/loja-inicio.png",
             ]
         },
