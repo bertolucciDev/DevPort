@@ -1,4 +1,79 @@
 document.addEventListener("DOMContentLoaded", function () {
+    const projetos = [
+        {
+            nome: "Projeto 1",
+            descricao: "Descrição do projeto 1",
+            URL: "https://loja.hostingfox.xyz",
+            imagem: [
+                "assets/img/projetos/loja-login.png",
+                "assets/img/projetos/loja-inicio.png",
+            ]
+        },
+        {
+            nome: "Projeto 2",
+            descricao: "Descrição do projeto 2",
+            URL: "https://exemplo.com.br/projeto2",
+            imagem: [
+                "assets/img/projetos/loja.png",
+                "assets/img/projetos/loja.png",
+            ]
+        },
+        {
+            nome: "Projeto 3",
+            descricao: "Descrição do projeto 3",
+            URL: "https://exemplo.com.br/projeto1",
+            imagem: [
+                "assets/img/projetos/loja.png",
+                "assets/img/projetos/loja.png",
+            ]
+        }
+    ];
+
+    const projetoLista = document.getElementById("projetos-lista");
+    projetoLista.innerHTML = "";
+
+    projetos.forEach(projeto => {
+        const card = document.createElement("div");
+        card.classList.add("col-md-4");
+
+        let carouselItems = projeto.imagem.map((imagem, index) => {
+            return `
+            <div class="carousel-item ${index === 0 ? 'active' : ''}">
+            <img src="${imagem}" class="projeto-imagem d-block w-100" alt="${projeto.nome || 'Projeto sem Nome'}">
+            </div>
+            `;
+        }).join("");
+
+        card.innerHTML = `
+        <div class="card">
+            <!-- Carrossel de Imagens -->
+            <div id="carousel${projeto.nome.replace(/\s+/g, '')}" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    ${carouselItems}
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carousel${projeto.nome.replace(/\s+/g, '')}" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carousel${projeto.nome.replace(/\s+/g, '')}" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Próximo</span>
+                </button>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">${projeto.nome}</h5>
+                <p class="card-text">${projeto.descricao}</p>
+                <a href="${projeto.URL}" class="btn btn-primary" target="_blank">Ver Projeto</a>
+            </div>
+        </div>
+        `;
+
+        projetoLista.appendChild(card);
+    });
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
     emailjs.init("3Xhm3jN93etOVulFv");
 
     document.getElementById("form-contato").addEventListener("submit", function (event) {
